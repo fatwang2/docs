@@ -37,5 +37,10 @@
   "footerSocials": {
     "twitter": "https://twitter.com/wangwangwangai",
     "github": "https://github.com/fatwang2"
-  }
+  },
+  "analytics": {
+    "ga4": {
+        "measurementId": "G-1V5WPEQYYG"
+    }
+}
 }
