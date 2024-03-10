@@ -60,6 +60,44 @@
         }
       }
     },
+    "/crawl": {
+      "post": {
+        "description": "Crawls a webpage",
+        "requestBody": {
+          "description": "URL for crawling",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrawlParameters"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Crawled content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CrawlResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/usage": {
       "post": {
         "description": "Get usage",
@@ -107,7 +145,34 @@
             "format": "int32"
           }
         },
-        "required": ["query", "search_service", "max_results"]
+        "required": ["query", "search_service"]
+      },
+      "CrawlParameters": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "description": "The URL to crawl",
+            "type": "string"
+          }
+        },
+        "required": ["url"]
+      },
+      "CrawlResult": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "description": "The title of the website",
+            "type": "string"
+          },
+          "link": {
+            "description": "The link of the website",
+            "type": "string"
+          },
+          "content": {
+            "description": "The content of the website",
+            "type": "string"
+          }
+        }
       },
       "SearchResult": {
         "type": "object",
