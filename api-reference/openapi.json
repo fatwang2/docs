@@ -143,6 +143,11 @@
             "description": "The maximum number of results to return",
             "type": "integer",
             "format": "int32"
+          },
+          "crawl_results": {
+            "description": "The maximum number of results to crawl，default is 0，means not crawl，max is 10",
+            "type": "integer",
+            "format": "int32"
           }
         },
         "required": ["query", "search_service"]
@@ -187,6 +192,10 @@
           },
           "snippet": {
             "description": "The snippet of the search result",
+            "type": "string"
+          },
+          "content": {
+            "description": "The content of the search result",
             "type": "string"
           }
         }
