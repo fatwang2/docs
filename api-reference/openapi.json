@@ -60,6 +60,47 @@
         }
       }
     },
+    "/news": {
+      "post": {
+        "description": "Performs a search of news",
+        "requestBody": {
+          "description": "Search parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewsParameters"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "News results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NewsResult"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/crawl": {
       "post": {
         "description": "Crawls a webpage",
@@ -152,6 +193,30 @@
         },
         "required": ["query", "search_service"]
       },
+      "NewsParameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "description": "The search query of news",
+            "type": "string"
+          },
+          "search_service": {
+            "description": "The search service to use,you can choose google,bing,duckduckgo",
+            "type": "string"
+          },
+          "max_results": {
+            "description": "The maximum number of results to return",
+            "type": "integer",
+            "format": "int32"
+          },
+          "crawl_results": {
+            "description": "The maximum number of results to crawl，default is 0，means not crawl，max is 10",
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": ["query", "search_service"]
+      },
       "CrawlParameters": {
         "type": "object",
         "properties": {
@@ -180,6 +245,27 @@
         }
       },
       "SearchResult": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "description": "The title of the search result",
+            "type": "string"
+          },
+          "link": {
+            "description": "The link of the search result",
+            "type": "string"
+          },
+          "snippet": {
+            "description": "The snippet of the search result",
+            "type": "string"
+          },
+          "content": {
+            "description": "The content of the search result",
+            "type": "string"
+          }
+        }
+      },
+      "NewsResult": {
         "type": "object",
         "properties": {
           "title": {
