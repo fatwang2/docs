@@ -31,6 +31,7 @@
       "group": "API Documentation",
       "pages": [
         "api-reference/endpoint/search",
+        "api-reference/endpoint/news",
         "api-reference/endpoint/crawl",
         "api-reference/endpoint/usage"
       ]
